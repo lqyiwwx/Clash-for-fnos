@@ -102,6 +102,12 @@ if [ "$BUNDLE_CORE" = true ]; then
   cp "$CORE_DIR/THIRD_PARTY_NOTICES.txt" "$STAGE/app/core/"
   cp "$CORE_DIR/bundled-core.json" "$STAGE/app/core/"
   cp "${CORE_ASSETS[0]}" "$STAGE/app/core/"
+  # Optional alternative bundled cores (for example Ninja) plus their catalog.
+  for extra in "$CORE_DIR"/ninja-linux-*.gz "$CORE_DIR/cores.json"; do
+    if [ -f "$extra" ]; then
+      cp "$extra" "$STAGE/app/core/"
+    fi
+  done
 else
   printf '%s\n' '{"mode":"online","source":"MetaCubeX/mihomo GitHub Releases"}' > "$STAGE/app/core/online-core.json"
 fi

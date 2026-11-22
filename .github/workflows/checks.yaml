@@ -22,3 +22,9 @@ jobs:
             ./scripts/build-manual.sh "$arch"
           done
           python3 scripts/audit-fpk.py
+      - name: Upload built FPK packages
+        uses: actions/upload-artifact@v4
+        with:
+          name: fnos-fpk-packages
+          path: dist/*.fpk
+          retention-days: 14
